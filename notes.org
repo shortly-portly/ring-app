@@ -1,0 +1,81 @@
+
+* (Clojure)
+** Introduction
+This is my vain attempt at documenting a Luminus Web Application as an attempt
+to learn Clojure (and maybe improve my web development knowledge).
+
+
+** Adding Code Blocks
+To add syntax highlighted code blocks simply type "<s" followed by the TAB key.
+The output will look like the below
+
+#+BEGIN_SRC
+
+#+END_SRC
+
+To define the language being used add it to the end of the BEGIN_SRC e.g.
+BEGIN_SRC clojure.
+
+
+** Executing Source Code
+
+Simply press enter when in the source code to print the output.
+#+BEGIN_SRC clojure
+(+ 2 3)
+#+END_SRC
+
+#+RESULTS:
+: 5
+
+#+BEGIN_SRC clojure :results output
+(doc map)
+
+#+END_SRC
+
+#+RESULTS:
+: -------------------------
+: clojure.core/map
+: ([f] [f coll] [f c1 c2] [f c1 c2 c3] [f c1 c2 c3 & colls])
+:   Returns a lazy sequence consisting of the result of applying f to
+:   the set of first items of each coll, followed by applying f to the
+:   set of second items in each coll, until any one of the colls is
+:   exhausted.  Any remaining items in other colls are ignored. Function
+:   f should accept number-of-colls arguments. Returns a transducer when
+:   no collection is provided.
+
+
+** Whats the difference between a symbol and a var?
+
+Clojure, unlike most programming languages, makes a distinction betweens
+"things" and "the name of things".
+#+BEGIN_SRC clojure
+(def x 2)
+
+#+END_SRC
+This does two things:
+- Created a var - a value holding entity.
+- Names the var I've created with the symbol x.
+
+Symbols are just names while vars are value carrying entities which don't
+themselves have names.
+
+#+BEGIN_SRC clojure
+(def y x)
+
+#+END_SRC
+This doesn't create a new var but gives the existing var a second name. Remember
+that generally data is immutable so:
+#+BEGIN_SRC clojure
+(inc x)
+
+#+END_SRC
+will return 3 (assuming the original value of x was 2). It won't change the var
+from 2 to 3.
+
+Note. Not all symbols are vars e.g. function arguments or let bindings.
+* Repl Driven Development
+** Changing the namespace
+#+BEGIN_SRC clojure
+(in-ns '<namespace name)
+
+#+END_SRC
