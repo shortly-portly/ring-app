@@ -79,3 +79,8 @@ Note. Not all symbols are vars e.g. function arguments or let bindings.
 (in-ns '<namespace name)
 
 #+END_SRC
+** Reloading a file
+#+BEGIN_SRC clojure
+(use 'foo.bar :reload-all)
+
+#+END_SRC
