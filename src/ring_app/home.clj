@@ -2,6 +2,7 @@
   (:require
    [ring-app.util :as util]
    [ring.middleware.params :as params]
+   [ring.middleware.keyword-params :as keyword-params]
    [ring.util.http-response :as response]
    [struct.core :as struct])
   (:use hiccup.page hiccup.element hiccup.form))
@@ -18,10 +19,11 @@
   [[:username
     struct/required
     struct/string
-    {:username "username must be greater than 3 characters"
+    {:message "username must be greater than 3 characters"
      :validate #(> (count %) 3)}]])
 
 (defn validate-user [params]
+  (println (str "validate user: " (struct/validate params user-schema)))
   (first (struct/validate params user-schema)))
 
 (defn post-data [{:keys [params]}]
@@ -34,12 +36,8 @@
      (html5
       [:h1 "Thanks"]))))
 
-
-
-
-
 (def routes
   [""
-   {:middleware [params/wrap-params]}
+   {:middleware [params/wrap-params keyword-params/wrap-keyword-params]}
    ["/" {:get home-page}]
    ["/post" {:post post-data}]])
