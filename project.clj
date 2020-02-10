@@ -7,6 +7,7 @@
                  [metosin/reitit "0.3.9"]
                  [metosin/ring-http-response "0.9.1"]
                  [ring/ring-jetty-adapter "1.7.1"]
-                 [hiccup "1.0.5"]]
+                 [hiccup "1.0.5"]
+                 [funcool/struct "1.3.0"]]
   :main ring-app.core
   :repl-options {:init-ns ring-app.core})
